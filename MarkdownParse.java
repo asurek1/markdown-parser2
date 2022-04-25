@@ -18,12 +18,33 @@ public class MarkdownParse {
             int closeParen = markdown.indexOf(")", openParen);
             toReturn.add(markdown.substring(openParen + 1, closeParen));
             currentIndex = closeParen + 1;
+        
+
+    
+
+            String returnedStr;
+            int start;
+            int end;
+
+            // Determine the checked indices
+            if (currentIndex == 0) {
+                start = currentIndex;
+                end = currentIndex + 1;
+                
+            } else {
+                start = openBracket - 1;
+                end = openBracket;
+            }
+
+            // Check if there is a ! before []
+            if (markdown.substring(start, end).equals("!") == false) {
+                returnedStr = markdown.substring(openParen + 1, closeParen);
+            }
+
         }
-
         return toReturn;
-    }
-
-
+        }
+        
     public static void main(String[] args) throws IOException {
         Path fileName = Path.of(args[0]);
         String content = Files.readString(fileName);
