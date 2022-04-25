@@ -18,7 +18,7 @@ public class MarkdownParse {
             int closeParen = markdown.indexOf(")", openParen);
             toReturn.add(markdown.substring(openParen + 1, closeParen));
 
-            String returnedStr;
+            String returnedStr = null;
             int start;
             int end;
 
@@ -36,6 +36,11 @@ public class MarkdownParse {
             if (markdown.substring(start, end).equals("!") == false) {
                 returnedStr = markdown.substring(openParen + 1, closeParen);}
             currentIndex = closeParen + 1;
+
+             // Remove extra spaces if present
+                returnedStr = returnedStr.replaceAll(" ", "");
+
+            
         }
 
 
